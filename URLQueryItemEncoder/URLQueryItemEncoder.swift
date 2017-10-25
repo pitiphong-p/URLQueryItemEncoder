@@ -27,7 +27,7 @@ public class URLQueryItemEncoder {
   
   fileprivate(set) public var codingPath: [CodingKey] = []
   fileprivate var items: [URLQueryItem] = []
-  public var arrayIndexEncodingStrategy = ArrayIndexEncodingStrategy.index
+  public var arrayIndexEncodingStrategy = ArrayIndexEncodingStrategy.emptySquareBrackets
   public init() {}
   
   public func encode(_ value: Encodable) throws -> [URLQueryItem] {
