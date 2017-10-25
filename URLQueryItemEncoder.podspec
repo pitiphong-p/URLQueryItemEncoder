@@ -30,4 +30,6 @@ Pod::Spec.new do |s|
 
   s.source_files  = "URLQueryItemEncoder"
 
+  s.xcconfig = { 'SWIFT_VERSION' => '4.0' }
+  
 end
