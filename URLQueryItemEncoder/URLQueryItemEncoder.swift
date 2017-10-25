@@ -19,17 +19,30 @@ let iso8601Formatter: Formatter = {
   }
 }()
 
+
+/// `URLQueryItemEncoder` facilitates the encoding of `Encodable` values into URLQueryItems.
 public class URLQueryItemEncoder {
+  
+  /// The strategy to use for encoding array indexes.
   public enum ArrayIndexEncodingStrategy {
+    /// Encode any array index as an empty square brackets `[]`
     case emptySquareBrackets
+    /// Encode an array index as index number
     case index
   }
   
   fileprivate(set) public var codingPath: [CodingKey] = []
   fileprivate var items: [URLQueryItem] = []
+  
+  /// The strategy to use in encoding array indexes. Defaults to `.emptySquareBrackets`.
   public var arrayIndexEncodingStrategy = ArrayIndexEncodingStrategy.emptySquareBrackets
   public init() {}
   
+  /// Encodes the given top-level value and returns its an array of URLQueryItem representation.
+  ///
+  /// - parameter value: The value to encode.
+  /// - returns: An array of `URLQueryItem` containing the encoded query item data.
+  /// - throws: An error if any value throws an error during encoding.
   public func encode(_ value: Encodable) throws -> [URLQueryItem] {
     items = []
     try value.encode(to: self)
