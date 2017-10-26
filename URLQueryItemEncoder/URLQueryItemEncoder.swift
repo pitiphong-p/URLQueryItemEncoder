@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 let iso8601Formatter: Formatter = {
   if #available(iOS 10.0, *) {
     return ISO8601DateFormatter()
@@ -99,7 +98,6 @@ private struct URLQueryItemArrayElementKey: CodingKey {
     encodingStrategy = .index
   }
 }
-
 
 extension URLQueryItemEncoder {
   private func pushNil(forKey codingPath: [CodingKey]) throws {
@@ -236,7 +234,6 @@ extension URLQueryItemEncoder {
     }
   }
 }
-
 
 extension URLQueryItemEncoder: Encoder {
   public var userInfo: [CodingUserInfoKey : Any] { return [:] }
@@ -451,6 +448,4 @@ fileprivate class UnkeyedURLQueryItemReferencingEncoder: URLQueryItemReferencing
     referencedUnkeyedContainer.encodedItemsCount += items.count
   }
 }
-
-
 
