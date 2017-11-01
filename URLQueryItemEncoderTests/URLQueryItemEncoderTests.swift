@@ -298,5 +298,32 @@ class URLQueryItemEncoderTests: XCTestCase {
     XCTAssertEqual("9deeparrayindeepdictionary[array][2]", result[23].name)
   }
   
+  func testEncodeRawValueRepresentableDataType() throws {
+    struct ListParams: Encodable {
+      enum Order: String, Encodable {
+        case ascending
+        case descending
+      }
+      
+      let order: Order?
+      let from: Date?
+    }
+    
+    let calendar = Calendar(identifier: .gregorian)
+    let dateComponents = DateComponents(calendar: calendar, timeZone: TimeZone.init(identifier: "PST"), year: 2007, month: 1, day: 9, hour: 9, minute: 41)
+    let date = calendar.date(from: dateComponents)
+    
+    let params = ListParams(order: .ascending, from: date)
+    
+    let encoder = URLQueryItemEncoder()
+    let result = try encoder.encode(params)
+
+    XCTAssertEqual(2, result.count)
+    XCTAssertEqual("order", result[0].name)
+    XCTAssertEqual("ascending", result[0].value)
+    XCTAssertEqual("from", result[1].name)
+    XCTAssertEqual("2007-01-09T17:41:00Z", result[1].value)
+  }
+  
 }
 
