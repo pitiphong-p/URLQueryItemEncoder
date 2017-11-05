@@ -1,15 +1,8 @@
 
 Pod::Spec.new do |s|
 
-  # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  These will help people to find your library, and whilst it
-  #  can feel like a chore to fill in it's definitely to your advantage. The
-  #  summary should be tweet-length, and the description more in depth.
-  #
-
   s.name         = "URLQueryItemEncoder"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "A Swift Encoder for encoding any Encodable value into an array of URLQueryItem."
 
   s.description  = "A Swift Encoder for encoding any Encodable value into an array of URLQueryItem. As part of the SE-0166, Swift has a foundation for any type to define how its value should be archived. This encoder allows you to encode those value into an array of URLQueryItem which represent that value in one command."
