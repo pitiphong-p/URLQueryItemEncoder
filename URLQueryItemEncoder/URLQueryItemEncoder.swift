@@ -184,7 +184,7 @@ extension URLQueryItemEncoder {
     items.append(URLQueryItem(name: codingPath.queryItemKey, value: value.absoluteString))
   }
   
-  private func push<T: Encodable>(_ value: T?, forKey codingPath: [CodingKey]) throws {
+  private func push<T: Encodable>(_ value: T, forKey codingPath: [CodingKey]) throws {
     self.codingPath = codingPath
     switch value {
     case let value as String:
@@ -226,10 +226,7 @@ extension URLQueryItemEncoder {
     case let value as URL:
       try push(value, forKey: codingPath)
       
-    case nil:
-      try pushNil(forKey: codingPath)
-      
-    default:
+    case let value:
       try value.encode(to: self)
     }
   }
@@ -355,7 +352,7 @@ extension URLQueryItemEncoder {
     }
     
     mutating func encodeNil() throws {
-      encoder.items.append(URLQueryItem(name: codingPath.queryItemKey, value: nil))
+      try encoder.pushNil(forKey: codingPath)
     }
     
     public func encode(_ value: Bool) throws {
