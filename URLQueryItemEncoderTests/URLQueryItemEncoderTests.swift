@@ -325,5 +325,17 @@ class URLQueryItemEncoderTests: XCTestCase {
     XCTAssertEqual("2007-01-09T17:41:00Z", result[1].value)
   }
   
+  func testWWWFormURLEncodedDataEncoding() throws {
+    let items: [URLQueryItem] = [
+      URLQueryItem(name: "email", value: "url.query.item.encoder+test@example.com"),
+      URLQueryItem(name: "password", value: "Eg{+wk?ao/6N{W3kUNZ&"),
+    ]
+    
+    let encoded = URLQueryItemEncoder.encodeToFormURLEncodedData(queryItems: items)
+    XCTAssertEqual(
+      String(data: encoded, encoding: .utf8),
+      "email=url.query.item.encoder%2Btest%40example.com&password=Eg%7B%2Bwk%3Fao%2F6N%7BW3kUNZ%26"
+    )
+  }
 }
 

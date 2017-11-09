@@ -37,7 +37,7 @@ public class URLQueryItemEncoder {
   public var arrayIndexEncodingStrategy = ArrayIndexEncodingStrategy.emptySquareBrackets
   public init() {}
   
-  /// Encodes the given top-level value and returns its an array of URLQueryItem representation.
+  /// Encodes the given top-level value and returns an array of its URLQueryItem representation.
   ///
   /// - parameter value: The value to encode.
   /// - returns: An array of `URLQueryItem` containing the encoded query item data.
@@ -46,6 +46,29 @@ public class URLQueryItemEncoder {
     items = []
     try value.encode(to: self)
     return items
+  }
+  
+  
+  private static let formURLEncodedAllowedCharacters: CharacterSet = {
+    var characters = CharacterSet.urlQueryAllowed
+    characters.remove(charactersIn: ":#[]@?/!$&'()*+,;=")
+    return characters
+  }()
+  
+  /// Encodes the given array of `URLQueryItem` and returns an x-www-urlencoded compatible Data representation.
+  ///
+  /// - Parameter queryItems: The URLQueryItems to encode
+  /// - Returns: A data represents the encoded with an x-www-urlencoded compatible representation
+  public static func encodeToFormURLEncodedData(queryItems: [URLQueryItem]) -> Data {
+    var components = URLComponents()
+    components.queryItems = queryItems.map({
+      URLQueryItem(
+        name: $0.name.addingPercentEncoding(withAllowedCharacters: URLQueryItemEncoder.formURLEncodedAllowedCharacters) ?? $0.name,
+        value: $0.value?.addingPercentEncoding(withAllowedCharacters: URLQueryItemEncoder.formURLEncodedAllowedCharacters)
+      )
+    })
+    
+    return components.query!.data(using: .utf8)!
   }
 }
 
