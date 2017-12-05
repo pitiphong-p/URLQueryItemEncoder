@@ -14,7 +14,7 @@ protocol URLQueryItemEncoderDateFormatter {
 }
 
 extension DateFormatter: URLQueryItemEncoderDateFormatter {}
-@available(iOSApplicationExtension 10.0, *)
+@available(iOSApplicationExtension 10.0, macOS 10.12, *)
 extension ISO8601DateFormatter: URLQueryItemEncoderDateFormatter {
 }
 

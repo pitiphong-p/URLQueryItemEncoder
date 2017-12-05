@@ -16,6 +16,7 @@ let items = try encoder.encode(person)
 
 # Requirements
 - iOS 8+
+- macOS 10.10+
 - Swift 4.0+
 
 # Installation
