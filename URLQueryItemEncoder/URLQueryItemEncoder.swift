@@ -8,7 +8,17 @@
 
 import Foundation
 
-let iso8601Formatter: Formatter = {
+
+protocol URLQueryItemEncoderDateFormatter {
+  func string(from date: Date) -> String
+}
+
+extension DateFormatter: URLQueryItemEncoderDateFormatter {}
+@available(iOSApplicationExtension 10.0, *)
+extension ISO8601DateFormatter: URLQueryItemEncoderDateFormatter {
+}
+
+let iso8601Formatter: URLQueryItemEncoderDateFormatter = {
   if #available(iOS 11.0, macOS 10.13, *) {
     var formatter = ISO8601DateFormatter()
     formatter.formatOptions.formUnion([.withFractionalSeconds])
@@ -145,7 +155,7 @@ extension URLQueryItemEncoder {
   }
   
   private func push(_ value: Date, forKey codingPath: [CodingKey]) throws {
-    items.append(URLQueryItem(name: codingPath.queryItemKey, value: iso8601Formatter.string(for: value)))
+    items.append(URLQueryItem(name: codingPath.queryItemKey, value: iso8601Formatter.string(from: value)))
   }
   
   private func push(_ value: Bool, forKey codingPath: [CodingKey]) throws {

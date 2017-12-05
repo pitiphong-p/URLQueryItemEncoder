@@ -77,7 +77,7 @@ extension AnyJSONType: Encodable {
       try container.encode(value)
     case let value as Date:
       var container = encoder.singleValueContainer()
-      try container.encode(iso8601Formatter.string(for: value))
+      try container.encode(iso8601Formatter.string(from: value))
     case let value as [Encodable]:
       var container = encoder.unkeyedContainer()
       try container.encode(contentsOf: value.map(AnyJSONType.init))
@@ -136,7 +136,7 @@ class URLQueryItemEncoderTests: XCTestCase {
       "1234123412341234",
       "false",
       "true",
-      "1970-01-01T00:00:00Z",
+      "1970-01-01T00:00:00.000Z",
       "$*nil*$",
       ])
   }
@@ -322,7 +322,7 @@ class URLQueryItemEncoderTests: XCTestCase {
     XCTAssertEqual("order", result[0].name)
     XCTAssertEqual("ascending", result[0].value)
     XCTAssertEqual("from", result[1].name)
-    XCTAssertEqual("2007-01-09T17:41:00Z", result[1].value)
+    XCTAssertEqual("2007-01-09T17:41:00.000Z", result[1].value)
   }
   
   func testWWWFormURLEncodedDataEncoding() throws {
@@ -339,3 +339,19 @@ class URLQueryItemEncoderTests: XCTestCase {
   }
 }
 
+
+#if os(Linux)
+  extension URLQueryItemEncoderTests {
+    static var allTests : [(String, (URLQueryItemEncoderTests) -> () throws -> Void)] {
+      return [
+        ("testEncodeBasic", testEncodeBasic),
+        ("testEncodeMultipleTypes", testEncodeMultipleTypes),
+        ("testEncodeNestedWithEmptyIndexStrategy", testEncodeNestedWithEmptyIndexStrategy),
+        ("testEncodeNestedWithIndexStrategy", testEncodeNestedWithIndexStrategy),
+        ("testEncodeRawValueRepresentableDataType", testEncodeRawValueRepresentableDataType),
+        ("testWWWFormURLEncodedDataEncoding", testWWWFormURLEncodedDataEncoding),
+
+      ]
+    }
+  }
+#endif 
