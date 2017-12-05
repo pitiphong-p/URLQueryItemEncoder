@@ -1,4 +1,11 @@
 # URLQueryItemEncoder
+![Platform](https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS%20%7C%20Linux-4E4E4E.svg?colorA=EF5138)
+[![Swift support](https://img.shields.io/badge/Swift-4.0-lightgrey.svg?colorA=EF5138&colorB=4E4E4E)](#requirements)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/URLQueryItemEncoder.svg?style=flat&label=CocoaPods)](https://cocoapods.org/pods/URLQueryItemEncoder)
+![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-brightgreen.svg?style=flat&colorB=64A5DE)
+![Swift Package Manager compatible](https://img.shields.io/badge/SPM-compatible-brightgreen.svg?style=flat&colorB=64A5DE)
+[![Twitter](https://img.shields.io/badge/twitter-@pitiphong__p-blue.svg?style=flat&colorB=64A5DE&label=Twitter)](http://twitter.com/pitiphong_p)
+
 
 A Swift `Encoder` for encoding any `Encodable` value into an array of `URLQueryItem`. As part of the [SE-0166](https://github.com/apple/swift-evolution/blob/master/proposals/0166-swift-archival-serialization.md), Swift has a foundation for any type to define how its value should be archived. This encoder allows you to encode those value into an array of `URLQueryItem` which represent that value in one command.
 
@@ -38,6 +45,15 @@ Add the following to your `Cartfile`
 ```ruby
 github "pitiphong-p/URLQueryItemEncoder"
 ```
+
+## Swift Package Manager
+You can use [Swift Package Manager](https://swift.org/package-manager/) and specify dependency in `Package.swift` by adding this:
+```swift
+dependencies: [
+    .Package(url: "https://github.com/pitiphong-p/URLQueryItemEncoder.git", majorVersion: 0)
+]
+```
+
 
 # Usage
 The `URLQueryItemEncoder` has a simple and familiar API. It has only 1 method for performing the encoding and 1 strategy for choosing how to encode the `Array Index` key.
