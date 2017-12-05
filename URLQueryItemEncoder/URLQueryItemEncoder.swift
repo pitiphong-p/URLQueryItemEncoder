@@ -9,11 +9,15 @@
 import Foundation
 
 let iso8601Formatter: Formatter = {
-  if #available(iOS 10.0, *) {
-    return ISO8601DateFormatter()
+  if #available(iOS 11.0, macOS 10.13, *) {
+    var formatter = ISO8601DateFormatter()
+    formatter.formatOptions.formUnion([.withFractionalSeconds])
+    return formatter
   } else {
     let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.timeZone = TimeZone(identifier: "UTC")!
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     return formatter
   }
 }()
