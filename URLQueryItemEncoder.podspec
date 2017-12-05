@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "URLQueryItemEncoder"
-  s.version      = "0.1.1"
+  s.version      = "0.2.0"
   s.summary      = "A Swift Encoder for encoding any Encodable value into an array of URLQueryItem."
 
   s.description  = "A Swift Encoder for encoding any Encodable value into an array of URLQueryItem. As part of the SE-0166, Swift has a foundation for any type to define how its value should be archived. This encoder allows you to encode those value into an array of URLQueryItem which represent that value in one command."
