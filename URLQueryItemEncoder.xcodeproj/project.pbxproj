@@ -88,7 +88,8 @@
 				8AD130D51F9E53B00044849A /* URLQueryItemEncoderTests.swift */,
 				8A851AEB1FD6A2F700A9CC4A /* LinuxMain.swift */,
 			);
-			path = URLQueryItemEncoderTests;
+			name = URLQueryItemEncoderTests;
+			path = Tests/URLQueryItemEncoderTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,10 +385,9 @@
 		8AD130DC1F9E53B00044849A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RVKKD6N7VZ;
-				INFOPLIST_FILE = URLQueryItemEncoderTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = Tests/URLQueryItemEncoderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @loader_path/../Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.pitiphong.URLQueryItemEncoderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -400,10 +400,9 @@
 		8AD130DD1F9E53B00044849A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RVKKD6N7VZ;
-				INFOPLIST_FILE = URLQueryItemEncoderTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = Tests/URLQueryItemEncoderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @loader_path/../Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.pitiphong.URLQueryItemEncoderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

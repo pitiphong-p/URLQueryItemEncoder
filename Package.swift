@@ -18,9 +18,8 @@ let package = Package(
             path: "URLQueryItemEncoder"),
         .testTarget(
             name: "URLQueryItemEncoderTests",
-            dependencies: ["URLQueryItemEncoder"],
-            path: "URLQueryItemEncoderTests"
-      ),
+            dependencies: ["URLQueryItemEncoder"]
+      )
     ],
     swiftLanguageVersions: [4]
 )
