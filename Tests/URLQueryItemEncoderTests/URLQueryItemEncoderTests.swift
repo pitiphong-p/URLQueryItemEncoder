@@ -81,13 +81,13 @@ extension AnyJSONType: Encodable {
     case let value as [Encodable]:
       var container = encoder.unkeyedContainer()
       try container.encode(contentsOf: value.map(AnyJSONType.init))
-    case let value as Dictionary<String, Encodable>:
+    case let value as Dictionary<String, Any?>:
       var container = encoder.container(keyedBy: AnyJSONAttributeEncodingKey.self)
       let sortedValuesByKey = value.sorted(by: { (first, second) -> Bool in
         return first.key < second.key
       })
       for (key, value) in sortedValuesByKey {
-        let value = AnyJSONType(value)
+        let value = value.map(AnyJSONType.init)
         try container.encode(value, forKey: AnyJSONAttributeEncodingKey(stringValue: key))
       }
     default: fatalError()
