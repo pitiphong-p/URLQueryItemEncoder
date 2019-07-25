@@ -21,5 +21,5 @@ let package = Package(
             dependencies: ["URLQueryItemEncoder"]
       )
     ],
-    swiftLanguageVersions: [5]
+    swiftLanguageVersions: [.v5]
 )
