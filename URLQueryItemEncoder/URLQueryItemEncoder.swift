@@ -25,7 +25,7 @@ let iso8601Formatter: URLQueryItemEncoderDateFormatter = {
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     return formatter
   #else
-    if #available(iOS 11.0, macOS 10.13, *) {
+    if #available(iOS 11.0, macOS 10.13, tvOS 11.0, *) {
       var formatter = ISO8601DateFormatter()
       formatter.formatOptions.formUnion([.withFractionalSeconds])
       return formatter
