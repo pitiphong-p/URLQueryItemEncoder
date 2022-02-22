@@ -14,6 +14,7 @@ protocol URLQueryItemEncoderDateFormatter {
 }
 
 extension DateFormatter: URLQueryItemEncoderDateFormatter {}
+@available(watchOS 3.0, *)
 @available(iOS 10.0, iOSApplicationExtension 10.0, macOS 10.12, *)
 extension ISO8601DateFormatter: URLQueryItemEncoderDateFormatter {}
 
@@ -25,7 +26,7 @@ let iso8601Formatter: URLQueryItemEncoderDateFormatter = {
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     return formatter
   #else
-    if #available(iOS 11.0, macOS 10.13, *) {
+    if #available(iOS 11.0, macOS 10.13, *), #available(watchOS 4.0, *) {
       var formatter = ISO8601DateFormatter()
       formatter.formatOptions.formUnion([.withFractionalSeconds])
       return formatter
